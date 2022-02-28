@@ -5,13 +5,15 @@ using UnityEngine;
 public class cameraScript : MonoBehaviour
 {
     public float speed;
-    // Start is called before the first frame update
+
+
     void Start()
     {
-        
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetKey(KeyCode.W))
@@ -39,6 +41,7 @@ public class cameraScript : MonoBehaviour
             transform.Translate(Vector3.down * speed);
         }
         Vector3 rotateBy = new Vector3(-Input.GetAxisRaw("Mouse Y"), Input.GetAxisRaw("Mouse X"), 0);
-        transform.Rotate(rotateBy,Space.Self);
+        transform.eulerAngles += rotateBy;
+        
     }
 }
